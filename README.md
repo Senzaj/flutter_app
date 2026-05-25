@@ -1,17 +1,79 @@
-# flutter_app
+# Flutter Test Task
 
-A new Flutter project.
+Тестовое мобильное приложение, разработанное на Flutter.
 
-## Getting Started
+Приложение включает:
+- Нативный Splash Screen
+- Onboarding экран
+- Бесконечную ленту
+- Интеграцию с GitHub API
+- Архитектуру MVVM
+- Управление состоянием через Provider
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+# Функционал
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Splash Screen
+Нативный экран загрузки, отображаемый при запуске приложения.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Onboarding
+Многостраничный onboarding, реализованный с использованием `PageView`.
+
+## Бесконечная лента
+
+Бесконечно прокручиваемый список GitHub-репозиториев организации Facebook.
+
+Источник данных:
+https://api.github.com/orgs/facebook/repos
+
+Пагинация реализована с помощью:
+- `ScrollController`
+- ленивой загрузки
+- динамической подгрузки страниц
+
+---
+
+# Запуск проекта
+
+## Требования
+
+- Flutter SDK
+- Android Studio или VS Code
+- Android SDK
+- Android Emulator или физическое устройство
+
+---
+
+# Установка
+
+Клонировать репозиторий:
+
+```bash
+git clone (https://github.com/Senzaj/flutter_app.git)
+```
+
+Перейти в папку проекта:
+
+```bash
+cd flutter_test_task
+```
+
+Установить зависимости:
+
+```bash
+flutter pub get
+```
+
+Запустить приложение:
+
+```bash
+flutter run
+```
+
+---
+
+# API
+
+Для загрузки репозиториев используется GitHub REST API:
+https://api.github.com/orgs/facebook/repos
