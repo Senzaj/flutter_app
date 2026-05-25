@@ -34,17 +34,6 @@ https://api.github.com/orgs/facebook/repos
 
 ---
 
-# Технологии
-
-- Flutter
-- Dart
-- Provider
-- Dio
-- MVVM
-- Clean Architecture
-
----
-
 # Запуск проекта
 
 ## Требования
