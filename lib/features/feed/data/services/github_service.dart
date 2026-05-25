@@ -12,7 +12,7 @@ class GithubService {
 
       queryParameters: {
         'page': page,
-        'per_page': 10,
+        'per_page': 8,
       },
     );
 

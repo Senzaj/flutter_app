@@ -12,9 +12,7 @@ class FeedRepository {
     final data = await service.fetchRepositories(page);
 
     return data.map<RepoModel>((json) {
-
       return RepoModel.fromJson(json);
-
     }).toList();
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../viewmodel/feed_view_model.dart';
 
 class FeedPage extends StatefulWidget {

@@ -17,12 +17,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MultiProvider(
-
       providers: [
         ChangeNotifierProvider(
-          create: (_) => FeedViewModel(
-            FeedRepository(
-              GithubService(),
+          create: (_) => 
+            FeedViewModel(
+              FeedRepository(
+                GithubService(),
             ),
           ),
         ),
