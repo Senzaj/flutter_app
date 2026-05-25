@@ -34,29 +34,6 @@ https://api.github.com/orgs/facebook/repos
 
 ---
 
-# Структура проекта
-
-```text
-lib/
-│
-├── core/
-├── features/
-│
-├── features/splash/
-├── features/onboarding/
-├── features/feed/
-│
-│   ├── data/
-│   │   ├── models/
-│   │   ├── repositories/
-│   │   └── services/
-│   │
-│   ├── presentation/
-│   └── viewmodel/
-```
-
----
-
 # Технологии
 
 - Flutter
@@ -84,7 +61,7 @@ lib/
 Клонировать репозиторий:
 
 ```bash
-git clone <(https://github.com/Senzaj/flutter_app.git)>
+git clone (https://github.com/Senzaj/flutter_app.git)
 ```
 
 Перейти в папку проекта:
