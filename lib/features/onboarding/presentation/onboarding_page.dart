@@ -11,26 +11,25 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
 
   final PageController _pageController = PageController();
-
   int _currentPage = 0;
-
   final List<Map<String, String>> _pages = [
     {
       'title': 'Welcome',
-      'description': 'This application demonstrates Flutter architecture.',
+      'description': 'This application demonstrates (my) Flutter skills.',
     },
     {
       'title': 'Infinite Feed',
       'description': 'Repositories will load automatically while scrolling.',
     },
     {
-      'title': 'MVVM Architecture',
-      'description': 'The project uses Provider and clean structure.',
+      'title': 'Final screen',
+      'description': 'Dont know what to write here.',
     },
   ];
 
   @override
   void dispose() {
+
     _pageController.dispose();
     super.dispose();
   }
@@ -38,12 +37,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
   void _nextPage() {
 
     if (_currentPage < _pages.length - 1) {
-
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
-
     } else {
       Navigator.pushReplacement(
         context,
@@ -66,7 +63,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 controller: _pageController,
                 itemCount: _pages.length,
                 onPageChanged: (index) {
-                  setState(() {
+                  super.setState(() {
                     _currentPage = index;
                   });
                 },
@@ -107,7 +104,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 (index) {
                   return Container(
                     margin: const EdgeInsets.symmetric(horizontal: 4),
-                    width: _currentPage == index ? 24 : 8,
+                    width: _currentPage == index 
+                      ? 24 
+                      : 8,
                     height: 8,
                     decoration: BoxDecoration(
                       color: _currentPage == index
@@ -119,12 +118,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 },
               ),
             ),
-
             const SizedBox(height: 40),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 64),
               child: SizedBox(
-                width: double.infinity,
+                width: 128,
                 height: 56,
                 child: ElevatedButton(
                   onPressed: _nextPage,

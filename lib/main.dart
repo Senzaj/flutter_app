@@ -27,10 +27,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ],
-
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Test Task',
         home: const SplashPage(),
       ),
     );

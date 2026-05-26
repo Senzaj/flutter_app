@@ -5,21 +5,21 @@ import 'package:flutter_app/features/feed/data/repositories/feed_repository.dart
 class FeedViewModel extends ChangeNotifier {
 
   final FeedRepository repository;
+
   FeedViewModel(this.repository);
+
   final List<RepoModel> repositories = [];
   bool isLoading = false;
   int page = 1;
 
   Future<void> loadRepositories() async {
 
-    if (isLoading) return;
-
+    if (isLoading)  return;
     isLoading = true;
     notifyListeners();
 
     try {
-      final newRepositories =
-          await repository.getRepositories(page);
+      final newRepositories = await repository.getRepositories(page);
       repositories.addAll(newRepositories);
       page++;
 

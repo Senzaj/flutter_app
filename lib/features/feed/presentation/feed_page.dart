@@ -16,27 +16,27 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   void initState() {
+
     super.initState();
 
-    final vm =
+    final viewModel =
         Provider.of<FeedViewModel>(
           context,
           listen: false,
         );
 
-    vm.loadRepositories();
+    viewModel.loadRepositories();
 
     _scrollController.addListener(() {
-
-      if (_scrollController.position.pixels >=
-          _scrollController.position.maxScrollExtent - 200) {
-        vm.loadRepositories();
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 400) {
+        viewModel.loadRepositories();
       }
     });
   }
 
   @override
   void dispose() {
+
     _scrollController.dispose();
     super.dispose();
   }
@@ -48,38 +48,27 @@ class _FeedPageState extends State<FeedPage> {
       appBar: AppBar(
         title: const Text('Facebook Repositories'),
       ),
-
       body: Consumer<FeedViewModel>(
-        builder: (context, vm, child) {
-          if (vm.repositories.isEmpty &&
-              vm.isLoading) {
-
+        builder: (context, viewModel, child) {
+          if (viewModel.repositories.isEmpty && viewModel.isLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-
           return ListView.builder(
             controller: _scrollController,
-            itemCount:
-                vm.repositories.length +
-                (vm.isLoading ? 1 : 0),
-
+            itemCount: viewModel.repositories.length + (viewModel.isLoading ? 1 : 0),
             itemBuilder: (context, index) {
-              if (index >= vm.repositories.length) {
+              if (index >= viewModel.repositories.length) {
                 return const Padding(
                   padding: EdgeInsets.all(16),
                   child: Center(
-                    child:
-                        CircularProgressIndicator(),
+                    child: CircularProgressIndicator(),
                   ),
                 );
               }
-
-              final repo =
-                  vm.repositories[index];
+              final repo = viewModel.repositories[index];
               return Card(
-
                 margin: const EdgeInsets.symmetric(
                   horizontal: 12,
                   vertical: 8,
@@ -87,8 +76,7 @@ class _FeedPageState extends State<FeedPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         repo.name,
@@ -112,14 +100,10 @@ class _FeedPageState extends State<FeedPage> {
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color:
-                                  Colors.blue.shade100,
-                              borderRadius:
-                                  BorderRadius.circular(12),
+                              color:Colors.blue.shade100,
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Text(
-                              repo.language,
-                            ),
+                            child: Text(repo.language,),
                           ),
                           const Spacer(),
                           Row(
@@ -129,9 +113,7 @@ class _FeedPageState extends State<FeedPage> {
                                 size: 18,
                               ),
                               const SizedBox(width: 4),
-                              Text(
-                                repo.watchers.toString(),
-                              ),
+                              Text(repo.watchers.toString(),),
                             ],
                           ),
                         ],
