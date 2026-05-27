@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/feed/data/repositories/feed_repository.dart';
-import 'package:flutter_app/features/feed/data/services/github_service.dart';
-import 'package:flutter_app/features/feed/viewmodel/feed_view_model.dart';
-import 'package:flutter_app/features/splash/presentation/splash_page.dart';
+import 'package:flutter_app/feed/feed_view.dart';
+import 'package:flutter_app/feed/feed_view_model.dart';
+import 'package:flutter_app/onboarding_screen/onboarding_view.dart';
+import 'package:flutter_app/services/github_api_service.dart';
+import 'package:flutter_app/splash_screen/splash_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,21 +16,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => 
-            FeedViewModel(
-              FeedRepository(
-                GithubService(),
-            ),
-          ),
-        ),
-      ],
+    
+    return ChangeNotifierProvider(
+      create: (_) => FeedViewModel(apiService: GithubApiService()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const SplashPage(),
+        home: SplashView(
+          nextScreen: const OnboardingView(
+            nextScreen: FeedView(),
+          )
+        ),
       ),
     );
   }
