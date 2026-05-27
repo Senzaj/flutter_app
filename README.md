@@ -6,9 +6,8 @@
 - Нативный Splash Screen
 - Onboarding экран
 - Бесконечную ленту
-- Интеграцию с GitHub API
-- Архитектуру MVVM
-- Управление состоянием через Provider
+- Интеграцию с GitHub API (через Dio)
+- Управление состоянием и зависимостями через Provider
 
 ---
 
@@ -18,7 +17,7 @@
 Нативный экран загрузки, отображаемый при запуске приложения.
 
 ## Onboarding
-Многостраничный onboarding, реализованный с использованием `PageView`.
+Многостраничный onboarding.
 
 ## Бесконечная лента
 
@@ -27,10 +26,7 @@
 Источник данных:
 https://api.github.com/orgs/facebook/repos
 
-Пагинация реализована с помощью:
-- `ScrollController`
-- ленивой загрузки
-- динамической подгрузки страниц
+Пагинация реализована с помощью ленивой динамической подгрузки страниц
 
 ---
 
@@ -50,13 +46,13 @@ https://api.github.com/orgs/facebook/repos
 Клонировать репозиторий:
 
 ```bash
-git clone (https://github.com/Senzaj/flutter_app.git)
+git clone https://github.com/Senzaj/flutter_app.git
 ```
 
 Перейти в папку проекта:
 
 ```bash
-cd flutter_test_task
+cd flutter_app
 ```
 
 Установить зависимости:
