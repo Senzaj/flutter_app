@@ -33,40 +33,88 @@ class _FeedViewState extends State<FeedView> {
 
   @override
   Widget build(BuildContext context) {
-    final updatedViewModel = context.watch<FeedViewModel>();
-
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Facebook™ Repositories'),
-        centerTitle: true,
-        ),
-      body: Column(children: [
-        Expanded(
-          child: ListView.builder(
+        title: const Text('Facebook Repositories'),
+      ),
+      body: Consumer<FeedViewModel>(
+        builder: (context, viewModel, child) {
+          if (viewModel.repos.isEmpty && viewModel.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return ListView.builder(
             controller: _scrollController,
-            itemCount: updatedViewModel.repos.length + (updatedViewModel.isLoading ? 1 : 0),
+            itemCount: viewModel.repos.length + (viewModel.isLoading ? 1 : 0),
             itemBuilder: (context, index) {
-               if (index >= updatedViewModel.repos.length) {
-                  return const Padding(
+              if (index >= viewModel.repos.length) {
+                return const Padding(
                   padding: EdgeInsets.all(16),
                   child: Center(
                     child: CircularProgressIndicator(),
                   ),
                 );
               }
-            final repo = updatedViewModel.repos[index];
-            return FeedItem(
-              repoName: repo.name,
-              repoDescription: repo.description,
-              repoLanguage: repo.language,
-              repoWatchers: repo.watchers,
-            );
-          },
-        ),
-        )
-        ],
-      )
+              final repo = viewModel.repos[index];
+              return Card(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        repo.name,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight:
+                              FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        repo.description,
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Container(
+                            padding:
+                                const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              color:Colors.blue.shade100,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(repo.language,),
+                          ),
+                          const Spacer(),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.visibility,
+                                size: 18,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(repo.watchers.toString(),),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
